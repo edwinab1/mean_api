@@ -1,0 +1,4 @@
+producto,
+cliente,
+total,
+discount
