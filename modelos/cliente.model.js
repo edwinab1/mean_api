@@ -6,9 +6,9 @@ var clienteSchema = new Schema({
     apellido: { type: String, required: true },
     ci_nit: { type: String, required: true },
     direccion: String,
-    telefono: Number,
-    estado: Boolean,
-    fecha_creacion: { Type: Date, default: Date.now }
+    telefono: { type: Number, required: true },
+    estado: { type: Boolean, default: true },
+    //fecha_creacion: { Type: Date, default: Date.now }
 })
 
 module.exports = mongoose.model('Clientes', clienteSchema);

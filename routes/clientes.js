@@ -6,21 +6,16 @@ var clienteControlador = require('../controladores/cliente.controller')
 //CRUD PARA CLIENTE
 
 router
+    //Crear nuevo cliente
     .post('/crear', clienteControlador.crear)
-
-    
-    .get('/', (req, res) => {
-        res.send('Lista de clientes')
-    })
-    .get('/leerPorID/:id', (req, res) => {
-        console.log(req.params.id)
-    })
-    .put('/actualizar/:id', (req, res) => {
-
-    })
-    .delete('/eliminar/:id', (req, res) => {
-
-    })
+    //Leer todos los cliente
+    .get('/', clienteControlador.leer)
+    // Leer cliente por ID, pasar ID por parametro
+    .get('/leerPorID/:id', clienteControlador.leerPorID)
+    //Actualizar cliente por ID
+    .put('/actualizar/:id', clienteControlador.actualizar)
+    //ELiminar cliente por ID
+    .delete('/eliminar/:id', clienteControlador.eliminar)
 
 module.exports = router;
 

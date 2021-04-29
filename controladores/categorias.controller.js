@@ -1,5 +1,6 @@
 module.exports = {
 
+
     crear: (req, res) => {
         console.log(req.body)
     },
@@ -16,4 +17,6 @@ module.exports = {
     eliminar: (req, res) => {
 
     }
+
 }
+
