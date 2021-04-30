@@ -3,29 +3,28 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
-
-var indexRouter = require('./routes/index');
-var rutaCliente = require('./routes/clientes');
 var mongoose = require('mongoose');
 
+// IMPORTAR RUTAS
+var indexRouter = require('./routes/index');
+var rutaCliente = require('./routes/clientes');
+var rutaCategoria = require('./routes/categorias');
+var rutaProductos = require('./routes/productos');
+var rutaUsuarios = require('./routes/usuarios');
+var rutaVentas = require('./routes/ventas');
 var app = express();
 
 // Conexion  a la base de datos
-mongoose.connect('mongodb://localhost:27017/curso', {useNewUrlParser: true});
+mongoose.connect('mongodb://localhost:27017/curso', {
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+  socketTimeoutMS: 500
+}, (err, res) => {
+  if (err) console.log(err)
+  console.log('Conectado a la BD');
+});
 
 
-// var conexionDB = mongoose.createConnection('mongodb://localhost:27017/curso', {
-//   useNewUrlParser: true,
-//   useUnifiedTopology: true
-// });
-
-// conexionDB.on('connected', () => {
-//   console.log('Estas conectado a la base de datos')
-// })
-
-// conexionDB.on('disconnected', () => {
-//   console.log('Estas DESCONECTADO de la base de datos')
-// })
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -37,8 +36,13 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
+//RUTAS
 app.use('/', indexRouter);
 app.use('/clientes', rutaCliente);
+app.use('/categorias', rutaCategoria);
+app.use('/productos', rutaProductos);
+app.use('/usuarios', rutaUsuarios);
+app.use('/ventas', rutaVentas);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {

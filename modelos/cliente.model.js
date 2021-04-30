@@ -8,7 +8,8 @@ var clienteSchema = new Schema({
     direccion: String,
     telefono: { type: Number, required: true },
     estado: { type: Boolean, default: true },
-    //fecha_creacion: { Type: Date, default: Date.now }
+    fecha_creacion: { type: Date, required: true, default: Date.now },
+
 })
 
 module.exports = mongoose.model('Clientes', clienteSchema);
