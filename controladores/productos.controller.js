@@ -6,6 +6,8 @@ module.exports = {
     crear: (req, res) => {
         let body = req.body;
 
+        console.log(body);
+
         // categoria: { type: Schema.Types.ObjectId, ref: 'Categorias', required: true },
         // nombre: { type: String, required: true },
         // description: { type: String, required: false },

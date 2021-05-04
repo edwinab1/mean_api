@@ -4,7 +4,7 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var mongoose = require('mongoose');
-
+var cors = require('cors');
 // IMPORTAR RUTAS
 var indexRouter = require('./routes/index');
 var rutaCliente = require('./routes/clientes');
@@ -13,6 +13,19 @@ var rutaProductos = require('./routes/productos');
 var rutaUsuarios = require('./routes/usuarios');
 var rutaVentas = require('./routes/ventas');
 var app = express();
+
+//Configurar CORS
+app.use(cors(
+  [
+    {
+      origin: "localhost:4200", //servidor que deseas que consuma o (*) en caso que sea acceso libre
+      credentials: true,
+      
+    }
+  ]
+))
+
+
 
 // Conexion  a la base de datos
 mongoose.connect('mongodb://localhost:27017/curso', {
