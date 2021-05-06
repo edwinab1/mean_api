@@ -59,9 +59,13 @@ module.exports = {
 
     },
     actualizar: (req, res) => {
+
         let id = req.params.id;
         let body = req.body;
-        let datos = new ProductoModel({
+
+
+
+        let datos = {
             categoria: body.categoria,
             nombre: body.nombre,
             descripcion: body.descripcion,
@@ -69,13 +73,13 @@ module.exports = {
             stock_minimo: body.stock_minimo,
             imagen: body.imagen,
 
-        })
+        }
 
 
         //Actualizar
-        ProductoModel.findByIdAndUpdate(id, datos, (err, info) => {
+        ProductoModel.findByIdAndUpdate({ _id: id }, datos, (err, info) => {
             if (err) return res.send({ ok: false, message: err })
-            return res.send({ ok: false, message: 'Actualizacion Correcta' })
+            return res.send({ ok: true, message: 'Actualizacion Correcta' })
 
         })
     },
